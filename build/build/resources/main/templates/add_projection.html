@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Add projection</title>
+        <link rel="stylesheet" href="public/register.css">
+    </head>
+    <body>
+        <div class="box">
+
+            <h1> Add projection </h1>    <!--FALTAN LOS ERRORES-->  
+            <label th:text="${error1}"></label>
+            <form th:action="@{/add_projection}" method="post">
+                <div><label>Movie:<input type="text" name="title" class="email" required/> </label></div>
+                <div><label>Screen:<input type="number" name="number" class="email" required/> </label></div>
+                <div><label>Day:<input type="datetime-local" name="day" class="email" required/> </label></div>                
+                
+                <p>
+                    <input type="submit" value = "Add projection">
+                </p>
+            </form>
+        </div>
+    </body>
+    <p class="copyright">Copyright (c) 2021 by Marina Rodriguez and Ander Lopez</p>
+</html>

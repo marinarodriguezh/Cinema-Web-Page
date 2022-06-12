@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Add screen</title>
+        <link rel="stylesheet" href="public/register.css">
+    </head>
+    <body>
+        <div class="box">
+
+            <h1> Add screen </h1>    
+            <label th:text="${error1}"></label>
+            <form th:action="@{/add_screen}" method="post">
+                <div><label>Number of the screen:<input type="number" name="num" class="email" min="0" max="20" required/> </label></div>
+                <div><label>Number of seats:<input type="number" name="NumbSeats" class="email" min = "1" required/> </label></div>
+
+                <p>
+                    <input type="submit" value = "Add screen">
+                </p>
+            </form>
+        </div>
+    </body>
+    <p class="copyright">Copyright (c) 2021 by Marina Rodriguez and Ander Lopez</p>
+</html>

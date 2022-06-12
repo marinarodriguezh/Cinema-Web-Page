@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+  <html xmlns:th="https://www.thymeleaf.org">
+    <link rel="stylesheet" th:href="@{/public/cinecopy.css}">
+      
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>User</title>
+    </head>
+      
+    <body>
+      <header>
+
+        <h1 class="header"> 
+            <div class="im_box">
+                <a href = "/"><img class = "cover" th:src="@{/public/image_header.jpg}" width= 90% height= 300px></a>
+                <div class="title">
+                    <strong>CINEMA THEATRE WEB</strong>
+                </div>
+            </div>
+            <div th:if = "${usertype == 'manager' or usertype == 'user'}" class="user">
+                <a th:href="@{/user}"><img th:src="@{/public/user.png}" width= 100px height= 100px ></a>
+                <form th:action="@{/logout}" method="post" class = "logout">
+                    <input type="submit" value="Log Out"/>
+                </form>
+            </div>
+        </h1>
+        
+      </header>
+      <div th:if = "${usertype == 'manager'}" id="menu">
+        <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/add_movie">Add a movie</a></li>
+            <li><a href="/add_projection">Add a projection</a></li>
+            <li><a href="/add_screen">Add a screen</a></li>
+
+        </ul>
+      </div>
+      <div th:if = "${usertype == 'user'}" id="menu" > 
+        <ul class="nav">
+          <li><a href="/" class='up'> Home</a></li>
+        </ul>
+      </div>      
+      <div th:if="${usertype == 'user'}">
+
+        <h2 class='up'>Welcome back <span th:text="${user.getName()}"></span></h2>
+
+
+        <p class='films'>All my reservations: </p>
+        <p>
+          <table>
+              <thead>
+                <tr>
+                  <th align="center">Movie</th>             
+                  <th align="center">Date of movie</th>
+                  <th align="center">Number of seats reserved</th>
+                  <th align="center">Reservation info</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="reservation:${reservs}">
+                  <td align="center"><a th:href="@{/movie/{id}(id=${reservation.getProjection().getMovie().getId()})}" th:text="${reservation.getProjection().getMovie().gettitle()}"></a></td>
+                  <td align="center"><span th:text="${reservation.getProjection().getDay()}"></span></td>
+                  <td align="center"><span th:text="${reservation.getNumSeats()}"></span></td>
+                  <td align="center"><a th:href="@{/reservation/{id}(id=${reservation.getId()})}">See info</a></p>
+                </tr>
+              </tbody>
+          </table>
+        </p>
+      </div>
+
+      <div th:if="${usertype == 'manager'}">
+
+        <p class='films'>All reservations: </p>
+        <p>
+          <table>
+              <thead>
+                <tr>
+                  <th align="center">Movie</th>             
+                  <th align="center">Date of movie</th>
+                  <th align="center">Number of seats reserved</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr th:each="reservation:${reservsmanager}">
+                  <td align="center"><a th:href="@{/movie/{id}(id=${reservation.getProjection().getMovie().getId()})}" th:text="${reservation.getProjection().getMovie().gettitle()}"></a></td>
+                  <td align="center"><span th:text="${reservation.getProjection().getDay()}"></span></td>
+                  <td align="center"><span th:text="${reservation.getNumSeats()}"></span></td>
+                </tr>
+              </tbody>
+          </table>
+        </p>
+      </div>
+      <br>
+
+    </body>
+    <p class="copyright">Copyright (c) 2021 by Marina Rodriguez and Ander Lopez</p>
+</html>
+      
+    
+      
+      

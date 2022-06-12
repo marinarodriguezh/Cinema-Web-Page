@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Sign-in</title>
+        <link rel="stylesheet" href="public/login.css">
+    </head>
+    <body>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <div th:if="${param.registered}">
+            Your new user has been registered.
+        </div>
+        <div class="box">
+
+            <h1> Log In </h1>
+            <form th:action="@{/login}" method="post">
+                <div><label><input type="email" name="username" placeholder = 'email' onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" required/> </label></div>
+                <div><label><input type="password" name="password" placeholder = 'password' onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" required/> </label></div>
+                <input type="submit" value = "Sign In" id="btn2">
+                <div><a href="/register"><div id="btn1">Sign Up</div></a></div>
+            </form>
+
+        </div>
+        <p>Continue without log in <u style="color:#f1c40f;"><a href = "/">Click Here!</a></u></p>
+    </body>
+    <p class="copyright">Copyright (c) 2021 by Marina Rodriguez and Ander Lopez</p>
+</html>

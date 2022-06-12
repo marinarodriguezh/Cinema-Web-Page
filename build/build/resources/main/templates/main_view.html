@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <link rel="stylesheet" th:href="@{/public/cinecopy.css}" type="text/css">  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.zoom').hover(function() {
+                $(this).addClass('transition');
+            }, function() {
+                $(this).removeClass('transition');
+            });
+        });
+    </script>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Cinema Theatre</title>
+        
+    </head>
+    <body bgcolor="white">
+        <header>
+
+            <h1 class="header"> 
+                <div class="im_box">
+                    <a href = "/"><img class = "cover" th:src="@{/public/image_header.jpg}" width= 90% height= 300px></a>
+                    <div class="title">
+                        <strong>CINEMA THEATRE WEB</strong>
+                    </div>
+                </div>
+                <div th:if = "${usertype == 'manager' or usertype == 'user'}" class="user">
+                    <a th:href="@{/user}"><img th:src="@{/public/user.png}" width= 100px height= 100px ></a>
+                    <form th:action="@{/logout}" method="post" class = "logout">
+                        <input type="submit" value="Log Out"/>
+                    </form>
+                </div>
+                <div th:if = "${user == null}" class="user">
+                    <a th:href="@{/login}"><img th:src="@{/public/user.png}" width= 100px height= 100px ></a>
+                </div>
+            </h1>
+            
+        </header>
+
+
+        <div th:if = "${user != null}">
+            <div th:if = "${usertype == 'manager'}" id="menu">
+                <ul class="nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/add_movie">Add a movie</a></li>
+                    <li><a href="/add_projection">Add a projection</a></li>
+                    <li><a href="/add_screen">Add a screen</a></li>
+                    <li><a href="/">Genre</a>
+                        <ul>
+                            <div th:each="genre:${listgenre}">
+                                <li><a th:href="@{/genre/{id}(id=${genre})}" th:text="${genre}"></a></li>
+                            </div>
+                            
+                        </ul>
+                    </li> 
+
+                </ul>
+            </div>
+
+        </div>
+
+        <div th:if = "${user != null}">
+            <div th:if = "${usertype == 'user'}" id="menu">
+                <ul class="nav">
+                    <li><a th:href="@{/user}"> User account </a></li>
+                    <li><a href="/">Genre</a>
+                        <ul>
+                            <div th:each="genre:${listgenre}">
+                                <li><a th:href="@{/genre/{id}(id=${genre})}" th:text="${genre}"></a></li>
+                            </div>
+                        </ul>
+                    </li> 
+                </ul>
+
+            </div>
+        </div>
+        <div th:if = "${user == null}" id="menu">
+            <ul class="nav">
+                <li><a href="/login"> Log in </a></li>
+                <li><a href="/">Genre</a>
+                    <ul>
+                        <div th:each="genre:${listgenre}">
+                            <li><a th:href="@{/genre/{id}(id=${genre})}" th:text="${genre}"></a></li>
+                        </div>
+                        
+                    </ul>
+                </li>            
+            </ul>
+
+        </div>
+        <br>
+        <p>
+            <h2 class='films'>Movies at this theatre</h2>
+            <br>
+            <div class="general">
+                <div th:each="movie:${movies}" class='columns'>
+                    <div>
+                        <a th:href="@{/movie/{id}(id=${movie.getId()})}"><img th:src="@{/public/{name}(name=${movie.getImage()})}" id="film_img" class="zoom"></img></a>
+                    </div>
+                </div>
+            </div>
+        </p>
+    </body>
+    <p class="copyright">Copyright (c) 2021 by Marina Rodriguez and Ander Lopez</p>
+</html>

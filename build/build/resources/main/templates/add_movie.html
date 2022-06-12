@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Add movie</title>
+        <link rel="stylesheet" href="public/register.css">
+    </head>
+    <body>
+        <div class="box">
+
+            <h1> Add movie </h1>    
+            <label th:text="${error1}"></label>
+            <form th:action="@{/add_movie}" method="post">
+                <div><label>Title:<input type="text" name="title" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Duration:<input type="text" name="duration" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Director:<input type="text" name="director" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Synopsis:<input type="text" name="synopsis" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Genre:<input type="text" name="genre" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Cast:<input type="text" name="cast" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Extra information:<input type="text" name="extra_data" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Country:<input type="text" name="country" class="email" maxlength = "254" required/> </label></div>
+                <div><label>Image:<input type="file" name="image" class="email" required/> </label></div>
+                <div><label>Trailer:<input type="file" name="trailer" class="email" required/> </label></div>
+                <p>
+                    <input type="submit" value = "Add movie">
+                </p>      
+            </form>
+        </div>
+    </body>
+<p class="copyright">Copyright (c) 2021 by Marina Rodriguez and Ander Lopez</p>
+</html>

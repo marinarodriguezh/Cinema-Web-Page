@@ -1,0 +1,34 @@
+
+
+.up{
+    padding-left: 7px;
+} 
+
+.down{
+    margin-left: 15px;
+    padding-left: 15px;
+} 
+  
+.films {
+    text-align: center;
+}
+  
+.film_img {
+    width:500px;
+    height:720px;
+}
+
+
+
+
+
+
+
+.logout{
+    float: right;
+    padding-right: 5px;
+    padding-bottom: 10px;
+  
+  } 
+
+  
